@@ -23,8 +23,21 @@ export default function Board(){
     );
 
     const handleCardClick = (index) => {
-        console.log('test click');
+        console.log('test click', index);
+
+        let startGrid = document.getElementById('start_grid');
+        console.log(startGrid);
+        startGrid.classList.add('uk-hidden');
+
+        let resultsGrid = document.getElementById('results_grid');
+        console.log(resultsGrid);
+        resultsGrid.classList.remove('uk-hidden');
+
     }
+
+    const [botCards, setBotCards] = useState(
+            () => ImagesArr[Math.floor(Math.random()*ImagesArr.length)]
+    );
 
     return (
         <>
@@ -32,7 +45,7 @@ export default function Board(){
             <Controls />
             */}
             <div className="board uk-padding-small uk-padding-remove-top uk-animation-slide-bottom">
-                <div id="" className="uk-grid uk-child-width-1-3">
+                <div id="start_grid" className="uk-grid uk-child-width-1-3">
                     {cards.map((card, index) => {
                         return (
 
@@ -46,8 +59,10 @@ export default function Board(){
                         )
                     })}
                 </div>  
+                <div id="results_grid" className="uk-grid uk-child-width-1-3 uk-hidden">
+
+                </div>  
             </div>
-            
         </>
     )
 }
