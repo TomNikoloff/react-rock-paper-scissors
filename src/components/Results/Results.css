@@ -6,7 +6,8 @@
     color: var(--tn-primary);
     transition: var(--tn-tansition);
     background-color: transparent;
-    font-size: large;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 .control-btn:hover {
@@ -16,7 +17,21 @@
     color: var(--tn-primary);
 }
 
-h2 {
+h1 {
     color: var(--tn-secondary);
-    font-size: 50px;
+    font-size: 25px;
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 640px) {
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .control-btn {
+        font-size: large;
+        line-height: 30px;
+    }
+  
+  }

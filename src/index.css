@@ -2,6 +2,7 @@ body {
   background-image: url("/src/assets/images/grain-background.png");
   background-color: black !important;
   min-height: 100vh;
+  width: 100%;
 }
 
 :root {

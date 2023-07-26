@@ -38,11 +38,9 @@ export default function Board(){
 
         
         let startGrid = document.getElementById('start_grid');
-        console.log(startGrid);
         startGrid.classList.add('uk-hidden');
 
         let resultsGrid = document.getElementById('results_grid');
-        console.log(resultsGrid);
         resultsGrid.classList.remove('uk-hidden');
         
 
@@ -63,17 +61,17 @@ export default function Board(){
             case 'scissorspaper':
             case 'rockscissors':
             case 'paperrock':
-                setResult('You Win')
+                setResult('You Won!')
                 break
             case 'paperscissors':
             case 'scissorsrock':
             case 'rockpaper':
-                setResult('You Lose')
+                setResult('You Lost!')
                 break
             case 'rockrock':
             case 'paperpaper':
             case 'scissorsscissors':
-                setResult('You Draw')
+                setResult('You Tied!')
                 break
         }
 
@@ -87,13 +85,29 @@ export default function Board(){
     useEffect(() => {
 
         evaluate();
-        
+
     }, [userChoice, computerChoice])
+
+    const handleRestart = () => {
+
+        setUserChoice(null);
+        setComputerChoice(null);
+        setUserCard(null);
+        setComputerCard(null);
+
+        setCards(shuffleCards(ImagesArr));
+
+        let startGrid = document.getElementById('start_grid');
+
+        startGrid.classList.remove('uk-hidden');
+        let resultsGrid = document.getElementById('results_grid');
+        resultsGrid.classList.add('uk-hidden');
+    }
 
 
     return (
         <>
-        {/*
+            {/*
             <Controls />
             */}
             <div className="board uk-padding-small uk-padding-remove-top uk-animation-slide-bottom">
@@ -111,23 +125,12 @@ export default function Board(){
                         )
                     })}
                 </div>  
-                <div id="results_grid" className="uk-grid uk-child-width-1-3 uk-hidden">
-                    <div className="uk-flex uk-flex-center uk-flex-middle uk-animation-slide-left">
-                        <div className="card">
-                            <img  className="card-img" src={userCard} />
-                        </div>
-                    </div>
-                    <div className="uk-flex uk-flex-center uk-flex-middle">
-                        <div>
-                            <button>Play Again</button>
-                        </div>
-                    </div>
-                    <div className="uk-flex uk-flex-center uk-flex-middle uk-animation-slide-right">
-                        <div className="card">
-                            <img  className="card-img" src={computerCard} />
-                        </div>
-                    </div>
-                </div>  
+                <Results 
+                    result={result}
+                    userCard={userCard}
+                    computerCard={computerCard}
+                    restart={handleRestart}
+                />
             </div>
         </>
     )
